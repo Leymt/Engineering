@@ -1,0 +1,52 @@
+int potentiometer = 0;  // De lichtsensor geeft een 0 signaal in rusttoestand
+
+void setup()  // Hieronder plaatsen we onze setup gegevens
+
+{
+  Serial.begin(9600);   // Start de communicatie met de seriële monitor
+  pinMode(8, OUTPUT);   // We geven aan dat we digitale pin8 gaan gebruiken als output
+  pinMode(9, OUTPUT);   // We geven aan dat we digitale pin9 gaan gebruiken als output
+  pinMode(10, OUTPUT);  // We geven aan dat we digitale pin10 gaan gebruiken als output
+  pinMode(11, OUTPUT);  // We geven aan dat we digitale pin11 gaan gebruiken als output
+}
+
+void loop() {
+  potentiometer = analogRead(A0);  // Lees de waarde van de potentiometer in op analoge pin0
+  Serial.println(potentiometer);
+  delay(50);
+  if (potentiometer <= 50) { // Als de waarde van de potentiometer kleiner of gelijk is als 50
+    digitalWrite(8, LOW);
+    digitalWrite(9, LOW);
+    digitalWrite(10, LOW);
+    digitalWrite(11, LOW);
+  }
+
+  if (potentiometer >= 50) { // Als de waarde van de potentiometer groter of gelijk is als 50
+    digitalWrite(8, HIGH);
+    digitalWrite(9, LOW);
+    digitalWrite(10, LOW);
+    digitalWrite(11, LOW);
+  }
+
+  if (potentiometer >= 250) { // Als de waarde van de potentiometer groter of gelijk is als 250
+    digitalWrite(8, HIGH);
+    digitalWrite(9, HIGH);
+
+    digitalWrite(10, LOW);
+    digitalWrite(11, LOW);
+  }
+  if (potentiometer >= 500) { // Als de waarde van de potentiometer groter of gelijk is als 500
+    digitalWrite(8, HIGH);
+    digitalWrite(9, HIGH);
+    digitalWrite(10, HIGH);
+    digitalWrite(11, LOW);
+  }
+
+  if (potentiometer >= 750)  // Als de waarde van de potentiometer groter of gelijk is als 750
+  {
+    digitalWrite(8, HIGH);
+    digitalWrite(9, HIGH);
+    digitalWrite(10, HIGH);
+    digitalWrite(11, HIGH);
+  }
+}
