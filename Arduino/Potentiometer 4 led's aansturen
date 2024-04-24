@@ -1,3 +1,5 @@
+// Potentiometer 4 led's aansturen //
+
 int potentiometer = 0;  // De lichtsensor geeft een 0 signaal in rusttoestand
 
 void setup()  // Hieronder plaatsen we onze setup gegevens
