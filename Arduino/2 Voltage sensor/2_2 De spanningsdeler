@@ -1,0 +1,20 @@
+Wanneer we gebruik maken van een voltage sensor gaan we ALTIJD gebruik maken van een spanningsdeler.
+Deze schakeling zit in het board van de sensor.
+
+Waarom nodig?
+De maximale spanning die aan een arduino aangesloten mag worden is 5V.
+Wanneer we uitgaan van de technische documentatie die bij de sensor zit mogen we MAXIMAAL 25VDC aansluiten op de spanningsensor.
+
+Om dit te kunnen doen gaan we dus gebruik maken van een spanningsdeler.
+
+Hoe werkt deze?
+
+
+
+
+
+
+
+Via onderstaande link kan je gebruik maken van een calculator
+https://www.digikey.be/nl/resources/conversion-calculators/conversion-calculator-voltage-divider
+
