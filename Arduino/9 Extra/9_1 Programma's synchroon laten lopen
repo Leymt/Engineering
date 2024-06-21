@@ -1,0 +1,127 @@
+// Bij dit programma zullen er 3 prorgramma's op hetzelfde moment doorlopen worden
+
+
+
+void setup() {
+setup1();
+setup2();
+setup3();
+}
+
+
+void loop()
+{
+loop1();
+loop2();
+loop3();
+}
+
+
+//TEMPERATUUR SENSOR
+
+#include <OneWire.h>
+#include <DallasTemperature.h>
+#define ONE_WIRE_BUS 2
+
+OneWire oneWire(ONE_WIRE_BUS);
+DallasTemperature sensors(&oneWire);
+
+
+//RGB LEDSTRIP
+#include <FastLED.h>
+long randNumber; // How many leds in your strip?
+#define NUM_LEDS 8
+
+// For led chips like Neopixels, which have a data line, ground, and power, you just
+// need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
+// ground, and power), like the LPD8806 define both DATA_PIN and CLOCK_PIN
+#define DATA_PIN 3
+#define CLOCK_PIN 13
+
+// Define the array of leds
+CRGB leds[NUM_LEDS];
+
+const int ledPin = 7;  //ldr
+
+const int ldrPin = A0; //Ldr 
+
+void setup1(){
+  //TEMPERATUUR
+  sensors.begin();
+  Serial.begin(9600);
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
+  }
+
+
+void loop1 () {
+  sensors.requestTemperatures();
+  Serial.print("Temperature: ");
+  Serial.print(sensors.getTempCByIndex(0));
+  Serial.print("C   |   ");
+  Serial.print((sensors.getTempCByIndex(0) * 9.0) / 5.0 + 32.0);
+  Serial.println("F");
+
+  delay(500);
+
+ if (sensors.getTempCByIndex(0)<=26)
+ {
+ 
+  leds[0] = CRGB::Red;   
+  leds[1] = CRGB::Red;
+} 
+
+ else (sensors.getTempCByIndex(0)>=26);
+ {
+  pinMode(9,HIGH); 
+  }
+
+
+}
+
+
+
+// LAMPEN
+void setup2(){
+  //TEMPERATUUR
+ pinMode(6, OUTPUT);  // Lampen Maquette
+  }
+
+
+void loop2 (){     //LAMPEN
+
+
+  // Lampen aan maquette
+  digitalWrite(6, HIGH);
+   
+      }
+void setup3(){
+  //lrd en led
+Serial.begin(9600);
+
+pinMode(ledPin, OUTPUT);
+
+pinMode(ldrPin, INPUT);
+}
+void loop3(){
+
+  int ldrStatus = analogRead(ldrPin);
+
+if (ldrStatus <=300) {
+
+digitalWrite(ledPin, HIGH);
+
+Serial.println("LDR is DARK, LED is ON");
+delay(1000);
+}
+else{
+
+digitalWrite(ledPin, LOW);
+
+Serial.println("---------------");
+delay(1000);
+}
+
+}
+
+
+
