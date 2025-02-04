@@ -1,0 +1,15 @@
+void setup() {
+pinMode (2,INPUT_PULLUP); //Startdrukknop aangesloten op Pin 2 - Pullup weerstand van Arduino gebruikt (LET OP DRUKKNOP AANSLUITEN OP GND)
+pinMode (3,INPUT_PULLUP); //Stopdrukknop aangesloten op Pin 3 - Pullup weerstand van Arduino gebruikt (LET OP DRUKKNOP AANSLUITEN OP GND)
+pinMode (8,OUTPUT); //Uitgang (LED, Relais,...) aangesloten op Pin 8 
+}
+
+//!!!LET OP: Omdat je gebruik maakt van een interne pullup weerstand is een HIGH signaal LOW en LOW een HIGH!!!
+
+void loop() {
+if(digitalRead(2)==LOW && digitalRead(3)==HIGH )
+digitalWrite(8,HIGH);
+
+if(digitalRead(3)==LOW)
+digitalWrite(8,LOW);
+}
