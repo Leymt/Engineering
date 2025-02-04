@@ -1,0 +1,43 @@
+/*
+ Gerbuik maken van interne pull-up weerstand
+
+  Dit voorbeeld demonstreert het gebruik van pinMode(INPUT_PULLUP). Het leest een digitaal
+  ingangssignaal op pin 2 en drukt de resultaten af ​​op de seriële monitor.
+
+  Het circuit:
+  - drukknop aangesloten op 1 pin van GND en op pin 2 
+  - ingebouwde LED op pin 13
+
+  In tegenstelling tot pinMode(INPUT) is er geen pull-down-weerstand nodig. 
+  Een interne weerstand van 20K-ohm wordt naar 5V getrokken. 
+  Deze configuratie zorgt ervoor dat de invoer wordt gelezen
+  HOOG als de schakelaar open is, en LAAG als deze gesloten is.
+
+  gemaakt op 14 maart 2012
+  door Scott Fitzgerald 
+  
+  https://www.arduino.cc/en/Tutorial/BuiltInExamples/InputPullupSerial
+*/
+
+void setup() {
+  //start serial connection
+  Serial.begin(9600);
+ 
+  pinMode(2, INPUT_PULLUP);  //configure pin 2 as an input and enable the internal pull-up resistor
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+
+  int sensorVal = digitalRead(2);   //read the pushbutton value into a variable
+  Serial.println(sensorVal);   //print out the value of the pushbutton
+
+  // Keep in mind the pull-up means the pushbutton's logic is inverted. It goes
+  // HIGH when it's open, and LOW when it's pressed. Turn on pin 13 when the
+  // button's pressed, and off when it's not:
+  if (sensorVal == HIGH) {
+    digitalWrite(13, LOW);
+  } else {
+    digitalWrite(13, HIGH);
+  }
+}
